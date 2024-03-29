@@ -1,16 +1,18 @@
-package main.agromarket.users.domain.model;
+package main.agromarket.users.application.dto;
 
+import jakarta.persistence.Column;
 
 import java.util.Objects;
 
-public final class User {
+public class CreateUserRequest {
+
     private Long userId;
     private String userName;
     private String email;
     private String password;
     private Long status;
 
-    public User(Long userId, String userName, String email, String password, Long status) {
+    public CreateUserRequest(Long userId, String userName, String email, String password, Long status) {
         this.userId = userId;
         this.userName = userName;
         this.email = email;
@@ -18,23 +20,23 @@ public final class User {
         this.status = status;
     }
 
-    public Long getUserId() {
+    public Long userId() {
         return userId;
     }
 
-    public String getUserName() {
+    public String userName() {
         return userName;
     }
 
-    public String getEmail() {
+    public String email() {
         return email;
     }
 
-    public String getPassword() {
+    public String password() {
         return password;
     }
 
-    public Long getStatus() {
+    public Long status() {
         return status;
     }
 
@@ -43,13 +45,13 @@ public final class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        CreateUserRequest that = (CreateUserRequest) o;
 
-        if (!Objects.equals(userId, user.userId)) return false;
-        if (!Objects.equals(userName, user.userName)) return false;
-        if (!Objects.equals(email, user.email)) return false;
-        if (!Objects.equals(password, user.password)) return false;
-        return Objects.equals(status, user.status);
+        if (!Objects.equals(userId, that.userId)) return false;
+        if (!Objects.equals(userName, that.userName)) return false;
+        if (!Objects.equals(email, that.email)) return false;
+        if (!Objects.equals(password, that.password)) return false;
+        return Objects.equals(status, that.status);
     }
 
     @Override
