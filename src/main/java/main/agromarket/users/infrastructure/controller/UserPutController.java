@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 public final class UserPutController {
     private CreateUserUseCase creator;
@@ -16,7 +18,7 @@ public final class UserPutController {
         this.creator = creator;
     }
     @PutMapping(value = "/user/{id}")
-    public ResponseEntity<String> create(@PathVariable Long id, @RequestBody Request request){
+    public ResponseEntity<String> create(@PathVariable String id, @RequestBody Request request){
         creator.createUser(new CreateUserRequest(id, request.userName, request.email, request.password, request.status));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -24,7 +26,7 @@ public final class UserPutController {
         private String userName;
         private String email;
         private String password;
-        private Long status;
+        private String status;
 
         public String userName() {
             return userName;
@@ -38,7 +40,7 @@ public final class UserPutController {
             return password;
         }
 
-        public Long status() {
+        public String status() {
             return status;
         }
 
@@ -54,7 +56,7 @@ public final class UserPutController {
             this.password = password;
         }
 
-        public void setStatus(Long status) {
+        public void setStatus(String status) {
             this.status = status;
         }
     }

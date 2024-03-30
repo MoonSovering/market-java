@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
@@ -13,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class UserEntity {
     @Id
     @Column
-    private Long userId;
+    private String userId;
     @Column
     private String userName;
     @Column
@@ -21,5 +23,5 @@ public class UserEntity {
     @Column
     private String password;
     @Column
-    private Long status;
+    private String status;
 }

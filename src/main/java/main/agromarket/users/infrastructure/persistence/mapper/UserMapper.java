@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 public class UserMapper {
     public UserEntity domainToEntity(User user) {
         return new UserEntity(
-                user.getUserId(),
-                user.getUserName(),
-                user.getEmail(),
-                user.getPassword(),
-                user.getStatus()
+                user.getUserId().value(),
+                user.getUserName().value(),
+                user.getEmail().value(),
+                user.getPassword().value(),
+                user.getStatus().value()
         );
     }
 }

@@ -3,16 +3,17 @@ package main.agromarket.users.application.dto;
 import jakarta.persistence.Column;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class CreateUserRequest {
 
-    private Long userId;
+    private String userId;
     private String userName;
     private String email;
     private String password;
-    private Long status;
+    private String status;
 
-    public CreateUserRequest(Long userId, String userName, String email, String password, Long status) {
+    public CreateUserRequest(String userId, String userName, String email, String password, String status) {
         this.userId = userId;
         this.userName = userName;
         this.email = email;
@@ -20,7 +21,7 @@ public class CreateUserRequest {
         this.status = status;
     }
 
-    public Long userId() {
+    public String userId() {
         return userId;
     }
 
@@ -36,7 +37,7 @@ public class CreateUserRequest {
         return password;
     }
 
-    public Long status() {
+    public String status() {
         return status;
     }
 
