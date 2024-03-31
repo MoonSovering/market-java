@@ -24,4 +24,10 @@ public class FarmerEntity {
     private String lastName;
     @Column
     private String address;
+    @Column
+    private String contact;
+    @Column
+    private String type;
+    @Column
+    private String status;
 }

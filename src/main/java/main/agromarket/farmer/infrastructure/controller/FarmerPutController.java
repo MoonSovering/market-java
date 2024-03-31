@@ -2,6 +2,7 @@ package main.agromarket.farmer.infrastructure.controller;
 
 import main.agromarket.farmer.application.create.CreateFarmerRequest;
 import main.agromarket.farmer.application.create.CreateFarmerUseCase;
+import main.agromarket.shared.Enum.Status;
 import main.agromarket.shared.exception.FarmerException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public final class FarmerPutController {
     public ResponseEntity<String> create(@PathVariable String id, @RequestBody Request request){
         try {
             creator.createFarmer(new CreateFarmerRequest(id, request.userName, request.email,
-                    request.password, request.lastName, request.address));
+                    request.password, request.lastName, request.address, request.contact, request.type, Status.FARMER));
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (FarmerException e){
             return new ResponseEntity<>(e.getErrorMessage(), e.getErrorCode());
@@ -32,6 +33,8 @@ public final class FarmerPutController {
         private String password;
         private String lastName;
         private String address;
+        private String contact;
+        private String type;
 
         public String address() {
             return address;
@@ -51,6 +54,23 @@ public final class FarmerPutController {
 
         public String lastName() {
             return lastName;
+        }
+
+        public String contact() {
+            return contact;
+        }
+
+        public String type() {
+            return type;
+        }
+
+
+        public void setContact(String contact) {
+            this.contact = contact;
+        }
+
+        public void setType(String type) {
+            this.type = type;
         }
 
         public void setUserName(String userName) {

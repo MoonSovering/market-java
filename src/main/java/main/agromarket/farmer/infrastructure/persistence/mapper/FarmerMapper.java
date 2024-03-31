@@ -13,8 +13,10 @@ public class FarmerMapper {
                 farmer.getEmail().value(),
                 farmer.getPassword().value(),
                 farmer.getLastName().value(),
-                farmer.getAddress().value()
-
+                farmer.getAddress().value(),
+                farmer.getContact().value(),
+                farmer.getType().value(),
+                farmer.getStatus().value()
         );
     }
 }

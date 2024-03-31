@@ -7,12 +7,11 @@ import org.springframework.http.HttpStatus;
 public class FarmerLastName extends StringValueObject {
     public FarmerLastName(String value){
         super(value);
-        ensureString(value);
+        ensureIsValidLength(value);
     }
-
-    private void ensureString(String value){
-        if (!value.matches("[a-zA-Z]+")) {
-            throw new FarmerException("Invalid lastName.", HttpStatus.BAD_REQUEST);
+    private void ensureIsValidLength(String value){
+        if(value.length() <= 1){
+            throw new FarmerException("Last name must have more than two characters. ", HttpStatus.BAD_REQUEST);
         }
     }
 }

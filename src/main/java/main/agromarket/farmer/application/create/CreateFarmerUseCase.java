@@ -18,7 +18,10 @@ public class CreateFarmerUseCase {
                 new FarmerEmail(request.email()),
                 new FarmerPassword(request.password()),
                 new FarmerLastName(request.lastName()),
-                new FarmerAddress(request.address())
+                new FarmerAddress(request.address()),
+                new FarmerContact(request.contact()),
+                new FarmType(request.type()),
+                new FarmerStatus(request.status())
         );
         userRepository.save(farmer);
     }
