@@ -1,4 +1,4 @@
-package main.agromarket.farmer.infrastructure.controller;
+package main.agromarket.farmer.infrastructure.rest.controller;
 
 import main.agromarket.farmer.application.create.CreateFarmerRequest;
 import main.agromarket.farmer.application.create.CreateFarmerUseCase;

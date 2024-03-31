@@ -1,5 +1,8 @@
 package main.agromarket.shared.valueObject;
 
+import main.agromarket.shared.exception.FarmerException;
+import org.springframework.http.HttpStatus;
+
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
@@ -21,8 +24,12 @@ public abstract class Identifier implements Serializable {
         return value;
     }
 
-    private void ensureValidUuid(String value) throws IllegalArgumentException {
-        UUID.fromString(value);
+    private void ensureValidUuid(String value){
+        try {
+            UUID.fromString(value);
+        } catch (IllegalArgumentException e) {
+            throw new FarmerException("Invalid ID. " , HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override
