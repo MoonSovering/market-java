@@ -21,7 +21,7 @@ public final class FarmerPutController {
     public ResponseEntity<String> create(@PathVariable String id, @RequestBody Request request){
         try {
             creator.createFarmer(new CreateFarmerRequest(id, request.userName, request.email,
-                    request.password, request.lastName, request.address, request.contact, request.type, Status.FARMER));
+                    request.password, request.lastName, request.address, request.contact, request.type, request.status));
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (FarmerException e){
             return new ResponseEntity<>(e.getErrorMessage(), e.getErrorCode());
@@ -35,7 +35,10 @@ public final class FarmerPutController {
         private String address;
         private String contact;
         private String type;
+        private Status status;
 
+
+        public Status status(){return status;}
         public String address() {
             return address;
         }
@@ -64,7 +67,7 @@ public final class FarmerPutController {
             return type;
         }
 
-
+        public void setStatus(Status status){this.status = status;}
         public void setContact(String contact) {
             this.contact = contact;
         }

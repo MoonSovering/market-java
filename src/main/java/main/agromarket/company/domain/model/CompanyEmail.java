@@ -1,14 +1,12 @@
-package main.agromarket.farmer.domain.model;
+package main.agromarket.company.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonValue;
-import main.agromarket.shared.exception.FarmerException;
 import main.agromarket.shared.valueObject.StringValueObject;
-import org.springframework.http.HttpStatus;
 
 import static main.agromarket.shared.constant.Constant.EMAIL_PATTERN;
 
-public class FarmerEmail extends StringValueObject {
-    public FarmerEmail(String value) {
+public class CompanyEmail extends StringValueObject {
+    public CompanyEmail(String value) {
         super(value);
         ensureIsValidEmail(value);
     }

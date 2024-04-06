@@ -12,7 +12,7 @@ public class FarmerLastName extends StringValueObject {
     }
     private void ensureIsValidLength(String value){
         if(value.length() <= 1){
-            throw new FarmerException("Last name must have more than two characters. ", HttpStatus.BAD_REQUEST);
+            throw new IllegalArgumentException("Last name must have more than two characters. ");
         }
     }
     @JsonValue

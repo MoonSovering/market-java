@@ -58,6 +58,6 @@ public class MySqlUserRepository implements UserRepositoryPort {
         }
         return farmers.stream()
                 .map(farmerMapper::entityToDomain)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

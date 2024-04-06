@@ -1,12 +1,10 @@
-package main.agromarket.farmer.domain.model;
+package main.agromarket.company.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonValue;
-import main.agromarket.shared.exception.FarmerException;
 import main.agromarket.shared.valueObject.StringValueObject;
-import org.springframework.http.HttpStatus;
 
-public class FarmerAddress extends StringValueObject {
-    public FarmerAddress(String value) {
+public class CompanyAddress extends StringValueObject {
+    public CompanyAddress(String value) {
         super(value);
         ensureIsValidLength(value);
     }

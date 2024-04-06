@@ -28,7 +28,7 @@ public abstract class Identifier implements Serializable {
         try {
             UUID.fromString(value);
         } catch (IllegalArgumentException e) {
-            throw new FarmerException("Invalid ID. " , HttpStatus.BAD_REQUEST);
+            throw new IllegalArgumentException("Invalid ID. ");
         }
     }
 
