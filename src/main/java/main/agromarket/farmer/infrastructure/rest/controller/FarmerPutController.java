@@ -3,7 +3,7 @@ package main.agromarket.farmer.infrastructure.rest.controller;
 import main.agromarket.farmer.application.create.CreateFarmerRequest;
 import main.agromarket.farmer.application.create.CreateFarmerUseCase;
 import main.agromarket.shared.Enum.Status;
-import main.agromarket.shared.exception.FarmerException;
+import main.agromarket.shared.exception.GeneralException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +23,7 @@ public final class FarmerPutController {
             creator.createFarmer(new CreateFarmerRequest(id, request.userName, request.email,
                     request.password, request.lastName, request.address, request.contact, request.type, request.status));
             return new ResponseEntity<>(HttpStatus.CREATED);
-        }catch (FarmerException e){
+        }catch (GeneralException e){
             return new ResponseEntity<>(e.getErrorMessage(), e.getErrorCode());
         }
     }

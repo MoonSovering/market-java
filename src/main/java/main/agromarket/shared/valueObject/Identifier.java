@@ -1,8 +1,5 @@
 package main.agromarket.shared.valueObject;
 
-import main.agromarket.shared.exception.FarmerException;
-import org.springframework.http.HttpStatus;
-
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;

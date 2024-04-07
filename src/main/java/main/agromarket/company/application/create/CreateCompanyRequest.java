@@ -25,7 +25,6 @@ public class CreateCompanyRequest {
         public String contactType() {
             return contactType;
         }
-
         public String contact() {
             return contact;
         }

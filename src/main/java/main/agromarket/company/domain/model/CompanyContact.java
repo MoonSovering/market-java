@@ -1,7 +1,5 @@
 package main.agromarket.company.domain.model;
 
-import main.agromarket.shared.valueObject.StringValueObject;
-
 public class CompanyContact  {
     private final String typeContact;
     private final String contact;
@@ -10,6 +8,14 @@ public class CompanyContact  {
         ensureIsValidLength(typeContact, contact);
         this.typeContact = typeContact;
         this.contact = contact;
+    }
+
+    public String getTypeContact() {
+        return typeContact;
+    }
+
+    public String getContact() {
+        return contact;
     }
 
     private void ensureIsValidLength(String typeContact, String contact){

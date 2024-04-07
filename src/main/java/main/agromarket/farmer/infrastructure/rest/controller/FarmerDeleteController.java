@@ -1,7 +1,7 @@
 package main.agromarket.farmer.infrastructure.rest.controller;
 
 import main.agromarket.farmer.application.delete.DeleteFarmerUseCase;
-import main.agromarket.shared.exception.FarmerException;
+import main.agromarket.shared.exception.GeneralException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,7 +21,7 @@ public class FarmerDeleteController {
         try {
             delete.deleteFarmer(id);
             return new ResponseEntity<>(HttpStatus.OK);
-        }catch (FarmerException e){
+        }catch (GeneralException e){
             return new ResponseEntity<>(e.getErrorMessage(), e.getErrorCode());
         }
     }

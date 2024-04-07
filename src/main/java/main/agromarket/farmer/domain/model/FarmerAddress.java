@@ -1,9 +1,7 @@
 package main.agromarket.farmer.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonValue;
-import main.agromarket.shared.exception.FarmerException;
 import main.agromarket.shared.valueObject.StringValueObject;
-import org.springframework.http.HttpStatus;
 
 public class FarmerAddress extends StringValueObject {
     public FarmerAddress(String value) {
