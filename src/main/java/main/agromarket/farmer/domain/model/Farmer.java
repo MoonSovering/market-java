@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -16,7 +18,7 @@ public final class Farmer {
     private FarmerPassword password;
     private FarmerLastName lastName;
     private FarmerAddress address;
-    private FarmerContact contact;
+    private List<FarmerContact> contact;
     private FarmType type;
     private FarmerStatus status;
 }

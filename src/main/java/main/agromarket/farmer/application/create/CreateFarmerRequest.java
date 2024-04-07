@@ -1,9 +1,11 @@
 package main.agromarket.farmer.application.create;
 
+import lombok.AllArgsConstructor;
 import main.agromarket.shared.Enum.Status;
 
+import java.util.List;
 import java.util.Objects;
-
+@AllArgsConstructor
 public class CreateFarmerRequest {
 
     private String farmerId;
@@ -12,23 +14,20 @@ public class CreateFarmerRequest {
     private String password;
     private String lastName;
     private String address;
-    private String contact;
+    private List<ContactInfo> contact;
     private String type;
     private Status status;
-
-    public CreateFarmerRequest(String farmerId, String farmerName, String email, String password, String lastName,
-                               String address, String contact, String type, Status status) {
-        this.farmerId = farmerId;
-        this.farmerName = farmerName;
-        this.email = email;
-        this.password = password;
-        this.lastName = lastName;
-        this.address = address;
-        this.contact = contact;
-        this.type = type;
-        this.status = status;
+    @AllArgsConstructor
+    public static class ContactInfo {
+        private String contactType;
+        private String contact;
+        public String contactType() {
+            return contactType;
+        }
+        public String contact() {
+            return contact;
+        }
     }
-
     public String address() {
         return address;
     }
@@ -52,7 +51,7 @@ public class CreateFarmerRequest {
         return lastName;
     }
 
-    public String contact() {
+    public List<ContactInfo> contact() {
         return contact;
     }
 

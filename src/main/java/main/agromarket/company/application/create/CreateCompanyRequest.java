@@ -19,8 +19,6 @@ public class CreateCompanyRequest {
     public static class ContactInfo {
         private String contactType;
         private String contact;
-
-
         public String contactType() {
             return contactType;
         }

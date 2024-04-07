@@ -6,8 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.UUID;
-
+import java.util.List;
 @Entity
 @Table(name = "farmer")
 @NoArgsConstructor
@@ -28,8 +27,8 @@ public class FarmerEntity {
     private String lastName;
     @Column
     private String address;
-    @Column
-    private String contact;
+    @ElementCollection
+    private List<ContactAdditionalInfo> contact;
     @Column
     private String type;
     @Column
