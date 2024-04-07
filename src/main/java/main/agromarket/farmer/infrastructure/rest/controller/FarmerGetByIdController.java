@@ -12,13 +12,13 @@ import java.util.Optional;
 
 @RestController
 public class FarmerGetByIdController {
-    private FindFarmerByIdUseCase find;
+    private final FindFarmerByIdUseCase find;
 
     public FarmerGetByIdController(FindFarmerByIdUseCase find) {
         this.find = find;
     }
 
-    @GetMapping(value = "user/{id}")
+    @GetMapping(value = "farmer/get/{id}")
     public ResponseEntity<Optional<Farmer>> findById(@PathVariable String id){
         Optional<Farmer> farmer = find.findById(id);
         return new ResponseEntity<>(farmer, HttpStatus.OK);

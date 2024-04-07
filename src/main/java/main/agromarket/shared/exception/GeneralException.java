@@ -1,6 +1,10 @@
 package main.agromarket.shared.exception;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+
+import java.util.stream.Collectors;
 
 public class GeneralException extends RuntimeException{
 
@@ -10,6 +14,11 @@ public class GeneralException extends RuntimeException{
     public GeneralException(String errorMessage, HttpStatus errorCode){
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
+    }
+    public static String extractErrorMessage(BindingResult errorResult) {
+        return errorResult.getAllErrors().stream()
+                .map(ObjectError::getDefaultMessage)
+                .collect(Collectors.joining(", "));
     }
     public GeneralException(){
     }

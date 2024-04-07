@@ -2,7 +2,7 @@ package main.agromarket.company.infrastructure.persistence.mapper;
 
 import main.agromarket.company.domain.model.*;
 import main.agromarket.company.infrastructure.persistence.entity.CompanyEntity;
-import main.agromarket.company.infrastructure.persistence.entity.ContactDetail;
+import main.agromarket.company.infrastructure.persistence.entity.ContactAdditionalInfo;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -11,8 +11,8 @@ import java.util.List;
 public class CompanyMapper {
 
     public CompanyEntity domainToEntity(Company company){
-        List<ContactDetail> companyContacts = company.getContact().stream()
-                .map(contactDetail -> new ContactDetail(
+        List<ContactAdditionalInfo> companyContacts = company.getContact().stream()
+                .map(contactDetail -> new ContactAdditionalInfo(
                         contactDetail.getTypeContact(),
                         contactDetail.getContact()
                 )).toList();
@@ -29,9 +29,9 @@ public class CompanyMapper {
 
     public Company entityToDomain(CompanyEntity company){
         List<CompanyContact> companyContacts = company.getContact().stream()
-                .map(contactDetail -> new CompanyContact(
-                        contactDetail.getContactType(),
-                        contactDetail.getContact()
+                .map(contactAdditionalInfo -> new CompanyContact(
+                        contactAdditionalInfo.getContactType(),
+                        contactAdditionalInfo.getContact()
                 )).toList();
         return new Company(
                 new CompanyId(company.getCompanyId()),

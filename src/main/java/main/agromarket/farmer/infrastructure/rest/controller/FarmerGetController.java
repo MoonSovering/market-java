@@ -17,7 +17,7 @@ public class FarmerGetController {
         this.find = find;
     }
 
-    @GetMapping(value = "user")
+    @GetMapping(value = "farmer")
     public ResponseEntity<List<Farmer>> findAll(){
         List<Farmer> farmers = find.findAll();
         return new ResponseEntity<>(farmers, HttpStatus.OK);

@@ -1,8 +1,7 @@
 package main.agromarket.company.application.create;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import main.agromarket.company.domain.model.*;
+import main.agromarket.shared.Enum.Status;
 
 import java.util.List;
 
@@ -10,14 +9,14 @@ import java.util.List;
 public class CreateCompanyRequest {
     private String companyId;
     private String name;
-    private List<ContactDetail> contact;
+    private List<ContactInfo> contact;
     private String address;
     private String email;
     private String password;
-    private String status;
+    private Status status;
 
     @AllArgsConstructor
-    public static class ContactDetail{
+    public static class ContactInfo {
         private String contactType;
         private String contact;
 
@@ -38,7 +37,7 @@ public class CreateCompanyRequest {
         return name;
     }
 
-    public List<ContactDetail> contact() {
+    public List<ContactInfo> contact() {
         return contact;
     }
 
@@ -54,7 +53,7 @@ public class CreateCompanyRequest {
         return password;
     }
 
-    public String status() {
+    public Status status() {
         return status;
     }
 }

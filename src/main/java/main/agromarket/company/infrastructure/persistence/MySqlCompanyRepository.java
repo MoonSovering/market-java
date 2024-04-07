@@ -34,6 +34,7 @@ public class MySqlCompanyRepository implements CompanyRepositoryPort {
         if(company.isEmpty()){
             throw new GeneralException("Company cannot be found.", HttpStatus.BAD_REQUEST);
         }
+        companyRepository.deleteById(id);
     }
 
     @Override

@@ -20,7 +20,7 @@ public class CompanyEntity {
     @Column
     private String name;
     @ElementCollection
-    private List<ContactDetail> contact;
+    private List<ContactAdditionalInfo> contact;
     @Column
     private String address;
     @Column

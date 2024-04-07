@@ -17,11 +17,11 @@ public final class FarmerPutController {
     public FarmerPutController(CreateFarmerUseCase creator) {
         this.creator = creator;
     }
-    @PutMapping(value = "/user/{id}")
+    @PutMapping(value = "/farmer/create/{id}")
     public ResponseEntity<String> create(@PathVariable String id, @RequestBody Request request){
         try {
             creator.createFarmer(new CreateFarmerRequest(id, request.userName, request.email,
-                    request.password, request.lastName, request.address, request.contact, request.type, request.status));
+                    request.password, request.lastName, request.address, request.contact, request.type, Status.FARMER));
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (GeneralException e){
             return new ResponseEntity<>(e.getErrorMessage(), e.getErrorCode());

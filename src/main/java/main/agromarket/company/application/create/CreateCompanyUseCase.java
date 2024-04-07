@@ -2,9 +2,10 @@ package main.agromarket.company.application.create;
 
 import main.agromarket.company.domain.model.*;
 import main.agromarket.company.domain.ports.CompanyRepositoryPort;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class CreateCompanyUseCase {
     private final CompanyRepositoryPort companyRepository;
 
@@ -25,7 +26,7 @@ public class CreateCompanyUseCase {
                 new CompanyAddress(request.address()),
                 new CompanyEmail(request.email()),
                 new CompanyPassword(request.password()),
-                new CompanyStatus(request.status())
+                new CompanyStatus(request.status().toString())
         );
         companyRepository.save(company);
     }
