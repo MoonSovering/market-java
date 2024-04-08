@@ -29,8 +29,8 @@ public class FarmerEntity {
     private String address;
     @ElementCollection
     private List<ContactAdditionalInfo> contact;
-    @Column
-    private String type;
+    @ElementCollection
+    private List<FarmTypeInfo> type;
     @Column
     private String status;
 }

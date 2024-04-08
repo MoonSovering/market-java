@@ -19,6 +19,6 @@ public final class Farmer {
     private FarmerLastName lastName;
     private FarmerAddress address;
     private List<FarmerContact> contact;
-    private FarmType type;
+    private List<FarmType> type;
     private FarmerStatus status;
 }

@@ -3,6 +3,7 @@ package main.agromarket.farmer.infrastructure.persistence.mapper;
 
 import main.agromarket.farmer.domain.model.*;
 import main.agromarket.farmer.infrastructure.persistence.entity.ContactAdditionalInfo;
+import main.agromarket.farmer.infrastructure.persistence.entity.FarmTypeInfo;
 import main.agromarket.farmer.infrastructure.persistence.entity.FarmerEntity;
 import main.agromarket.shared.Enum.Status;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,11 @@ public class FarmerMapper {
                         contactDetail.getTypeContact(),
                         contactDetail.getContact()
                 )).toList();
+        List<FarmTypeInfo> typeInfos = farmer.getType().stream()
+                .map(farmType -> new FarmTypeInfo(
+                        farmType.getTypeFarm(),
+                        farmType.getFarm()
+                )).toList();
         return new FarmerEntity(
                 farmer.getUser().value(),
                 farmer.getName().value(),
@@ -26,7 +32,7 @@ public class FarmerMapper {
                 farmer.getLastName().value(),
                 farmer.getAddress().value(),
                 farmerContacts,
-                farmer.getType().value(),
+                typeInfos,
                 farmer.getStatus().value()
         );
     }
@@ -36,6 +42,11 @@ public class FarmerMapper {
                         contactAdditionalInfo.getContactType(),
                         contactAdditionalInfo.getContact()
                 )).toList();
+        List<FarmType> farmTypes = entity.getType().stream()
+                .map(farmTypeInfo -> new FarmType(
+                        farmTypeInfo.getTypeFarm(),
+                        farmTypeInfo.getFarm()
+                )).toList();
         return new Farmer(
                 new FarmerId(entity.getFarmerId()),
                 new FarmerName(entity.getFarmerName()),
@@ -44,7 +55,7 @@ public class FarmerMapper {
                 new FarmerLastName(entity.getLastName()),
                 new FarmerAddress(entity.getAddress()),
                 companyContacts,
-                new FarmType(entity.getType()),
+                farmTypes,
                 new FarmerStatus(Status.valueOf(entity.getStatus()))
         );
     }

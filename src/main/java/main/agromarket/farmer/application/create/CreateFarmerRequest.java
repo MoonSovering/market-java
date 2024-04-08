@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import main.agromarket.shared.Enum.Status;
 
 import java.util.List;
-import java.util.Objects;
 @AllArgsConstructor
 public class CreateFarmerRequest {
 
@@ -15,7 +14,7 @@ public class CreateFarmerRequest {
     private String lastName;
     private String address;
     private List<ContactInfo> contact;
-    private String type;
+    private List<FarmType> type;
     private Status status;
     @AllArgsConstructor
     public static class ContactInfo {
@@ -28,6 +27,21 @@ public class CreateFarmerRequest {
             return contact;
         }
     }
+
+    @AllArgsConstructor
+    public static class FarmType{
+        private String typeFarm;
+        private String farm;
+
+        public String typeFarm() {
+            return typeFarm;
+        }
+
+        public String farm() {
+            return farm;
+        }
+    }
+
     public String address() {
         return address;
     }
@@ -54,8 +68,7 @@ public class CreateFarmerRequest {
     public List<ContactInfo> contact() {
         return contact;
     }
-
-    public String type() {
+    public List<FarmType> type() {
         return type;
     }
 

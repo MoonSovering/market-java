@@ -1,7 +1,5 @@
 package main.agromarket.farmer.application.create;
 
-import main.agromarket.company.domain.model.CompanyContact;
-import main.agromarket.farmer.application.create.CreateFarmerRequest;
 import main.agromarket.farmer.domain.model.*;
 import main.agromarket.farmer.domain.ports.out.UserRepositoryPort;
 import org.springframework.stereotype.Service;
@@ -20,6 +18,11 @@ public class CreateFarmerUseCase {
                         contactDetail.contactType(),
                         contactDetail.contact()
                 )).toList();
+        List<FarmType> farmTypes = request.type().stream()
+                .map( farmType -> new FarmType(
+                        farmType.typeFarm(),
+                        farmType.farm()
+                ) ).toList();
         Farmer farmer = new Farmer(
                 new FarmerId(request.farmerId()),
                 new FarmerName(request.farmerName()),
@@ -28,7 +31,7 @@ public class CreateFarmerUseCase {
                 new FarmerLastName(request.lastName()),
                 new FarmerAddress(request.address()),
                 companyContacts,
-                new FarmType(request.type()),
+                farmTypes,
                 new FarmerStatus(request.status())
         );
         userRepository.save(farmer);

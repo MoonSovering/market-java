@@ -40,8 +40,13 @@ public final class FarmerPutController {
                         contactDetail.contactType(),
                         contactDetail.contact()
                 )).toList();
+        List<CreateFarmerRequest.FarmType> farmTypes = request.type.stream()
+                        .map(typeFarmInfo -> new CreateFarmerRequest.FarmType(
+                                typeFarmInfo.typeFarm,
+                                typeFarmInfo.farm
+                        )).toList();
         creator.createFarmer(new CreateFarmerRequest(id, request.userName, request.email,
-                request.password, request.lastName, request.address, companyContacts, request.type, Status.FARMER));
+                request.password, request.lastName, request.address, companyContacts, farmTypes, Status.FARMER));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     final static class Request {
@@ -66,8 +71,8 @@ public final class FarmerPutController {
         @Valid
         private List<ContactDetail> contact;
 
-        @NotBlank(message = "Type is required")
-        private String type;
+        @Valid
+        private List<typeFarmInfo> type;
 
         private Status status;
 
@@ -96,7 +101,7 @@ public final class FarmerPutController {
             return contact;
         }
 
-        public String type() {
+        public List<typeFarmInfo> type() {
             return type;
         }
 
@@ -105,7 +110,7 @@ public final class FarmerPutController {
             this.contact = contact;
         }
 
-        public void setType(String type) {
+        public void setType(List<typeFarmInfo> type) {
             this.type = type;
         }
 
@@ -149,6 +154,31 @@ public final class FarmerPutController {
 
             public void setContact(String contact) {
                 this.contact = contact;
+            }
+        }
+        final static class typeFarmInfo{
+            @NotBlank(message = "El tipo de granja no puede estar vacío.")
+            @Size(min = 3, max = 50, message = "El tipo de granja debe tener entre 3 y 50 caracteres.")
+            private String typeFarm;
+
+            @NotBlank(message = "El nombre de la granja no puede estar vacío.")
+            @Size(min = 3, max = 50, message = "El nombre de la granja debe tener entre 3 y 50 caracteres.")
+            private String farm;
+
+            public String typeFarm() {
+                return typeFarm;
+            }
+
+            public void setTypeFarm(String typeFarm) {
+                this.typeFarm = typeFarm;
+            }
+
+            public String farm() {
+                return farm;
+            }
+
+            public void setFarm(String farm) {
+                this.farm = farm;
             }
         }
     }
