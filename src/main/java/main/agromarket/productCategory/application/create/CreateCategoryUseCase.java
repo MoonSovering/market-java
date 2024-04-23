@@ -2,6 +2,7 @@ package main.agromarket.productCategory.application.create;
 
 import main.agromarket.productCategory.domain.model.ProductCategory;
 import main.agromarket.productCategory.domain.ports.out.ProductCategoryRepositoryPort;
+import main.agromarket.productCategory.domain.ports.out.response.ProductCategoryResponseDto;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,7 +13,7 @@ public class CreateCategoryUseCase {
         this.repository = repository;
     }
 
-    public ProductCategory CreateProductCategory(CreateCategoryRequest request){
+    public ProductCategoryResponseDto CreateProductCategory(CreateCategoryRequest request){
         ProductCategory product = new ProductCategory(
                 request.getName()
         );

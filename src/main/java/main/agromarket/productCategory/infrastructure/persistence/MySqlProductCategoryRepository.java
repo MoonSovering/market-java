@@ -2,6 +2,7 @@ package main.agromarket.productCategory.infrastructure.persistence;
 
 import main.agromarket.productCategory.domain.model.ProductCategory;
 import main.agromarket.productCategory.domain.ports.out.ProductCategoryRepositoryPort;
+import main.agromarket.productCategory.domain.ports.out.response.ProductCategoryResponseDto;
 import main.agromarket.productCategory.infrastructure.persistence.entity.ProductCategoryEntity;
 import main.agromarket.productCategory.infrastructure.persistence.mapper.ProductCategoryMapper;
 import main.agromarket.productCategory.infrastructure.persistence.reposity.ProductCategoryJpaRepository;
@@ -21,14 +22,14 @@ public class MySqlProductCategoryRepository implements ProductCategoryRepository
     }
 
     @Override
-    public ProductCategory save(ProductCategory productCategory) {
+    public ProductCategoryResponseDto save(ProductCategory productCategory) {
         ProductCategoryEntity category = mapper.domainToEntity(productCategory);
         ProductCategoryEntity savedEntity = repository.save(category);
         return mapper.entityToDomain(savedEntity);
     }
 
     @Override
-    public List<ProductCategory> getAll() {
+    public List<ProductCategoryResponseDto> getAll() {
         List<ProductCategoryEntity> categories = repository.findAll();
         if(categories.isEmpty()){
             throw new GeneralException("Categories cannot be found.", HttpStatus.BAD_REQUEST);

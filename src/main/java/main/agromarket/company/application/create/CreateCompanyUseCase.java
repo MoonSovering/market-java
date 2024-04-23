@@ -2,6 +2,7 @@ package main.agromarket.company.application.create;
 
 import main.agromarket.company.domain.model.*;
 import main.agromarket.company.domain.ports.CompanyRepositoryPort;
+import main.agromarket.company.domain.ports.response.CompanyResponseDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,14 +14,13 @@ public class CreateCompanyUseCase {
         this.companyRepository = companyRepository;
     }
 
-    public void createCompany(CreateCompanyRequest request){
+    public CompanyResponseDto createCompany(CreateCompanyRequest request){
         List<CompanyContact> companyContacts = request.contact().stream()
                 .map(contactDetail -> new CompanyContact(
                         contactDetail.contactType(),
                         contactDetail.contact()
                 )).toList();
         Company company = new Company(
-                new CompanyId(request.companyId()),
                 new CompanyName(request.name()),
                 companyContacts,
                 new CompanyAddress(request.address()),
@@ -28,6 +28,6 @@ public class CreateCompanyUseCase {
                 new CompanyPassword(request.password()),
                 new CompanyStatus(request.status().toString())
         );
-        companyRepository.save(company);
+        return companyRepository.save(company);
     }
 }

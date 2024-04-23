@@ -6,25 +6,23 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import main.agromarket.company.application.create.CreateCompanyRequest;
 import main.agromarket.company.application.create.CreateCompanyUseCase;
+import main.agromarket.company.domain.ports.response.CompanyResponseDto;
 import main.agromarket.shared.Enum.Status;
 import main.agromarket.shared.exception.GeneralException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-public class CompanyPutController {
+public class CompanyPostController {
     private final CreateCompanyUseCase create;
-    public CompanyPutController(CreateCompanyUseCase create) {
+    public CompanyPostController(CreateCompanyUseCase create) {
         this.create = create;
     }
-    @PutMapping(value = "/company/{id}")
-    public ResponseEntity<String> create(@PathVariable String id,@Valid @RequestBody Request request, BindingResult errorResult){
+    @PostMapping("company")
+    public ResponseEntity<CompanyResponseDto> create(@Valid @RequestBody Request request, BindingResult errorResult){
         if(errorResult.hasErrors()){
             String errorMessage = GeneralException.extractErrorMessage(errorResult);
             throw new GeneralException(errorMessage, HttpStatus.BAD_REQUEST);
@@ -34,10 +32,9 @@ public class CompanyPutController {
                         contactDetail.contactType(),
                         contactDetail.contact()
                 )).toList();
-        create.createCompany(new CreateCompanyRequest(
-                id, request.name, companyContacts, request.Address, request.email, request.password, Status.COMPANY
+        CompanyResponseDto result = create.createCompany(new CreateCompanyRequest(request.name, companyContacts, request.Address, request.email, request.password, Status.COMPANY
         ));
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
     final static class Request{
 

@@ -7,6 +7,7 @@ import lombok.Setter;
 import main.agromarket.selectItem.application.create.CreateItemRequest;
 import main.agromarket.selectItem.application.create.CreateItemUseCase;
 import main.agromarket.selectItem.domain.model.SelectItem;
+import main.agromarket.selectItem.domain.ports.out.response.ProductItemResponseDto;
 import main.agromarket.shared.Enum.ShippingStatus;
 import main.agromarket.shared.exception.GeneralException;
 import org.springframework.http.HttpStatus;
@@ -25,12 +26,12 @@ public class PostSelectItemController {
     }
 
     @PostMapping(value = "create/item")
-    public ResponseEntity<SelectItem> create(@Valid @RequestBody Request request, BindingResult errorResult){
+    public ResponseEntity<ProductItemResponseDto> create(@Valid @RequestBody Request request, BindingResult errorResult){
         if(errorResult.hasErrors()){
             String errorMessage = GeneralException.extractErrorMessage(errorResult);
             throw new GeneralException(errorMessage, HttpStatus.BAD_REQUEST);
         }
-        SelectItem body = create.create(new CreateItemRequest(
+        ProductItemResponseDto body = create.create(new CreateItemRequest(
                 request.amountSelect,
                 request.idCompany,
                 request.idStatus,

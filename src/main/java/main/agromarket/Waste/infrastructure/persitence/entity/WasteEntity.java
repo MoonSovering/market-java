@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Table(name = "waste")
+@Table(name = "_waste")
 @NoArgsConstructor
 @Getter
 @Setter

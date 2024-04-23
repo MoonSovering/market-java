@@ -8,6 +8,7 @@ import lombok.Setter;
 import main.agromarket.productCategory.application.create.CreateCategoryRequest;
 import main.agromarket.productCategory.application.create.CreateCategoryUseCase;
 import main.agromarket.productCategory.domain.model.ProductCategory;
+import main.agromarket.productCategory.domain.ports.out.response.ProductCategoryResponseDto;
 import main.agromarket.shared.exception.GeneralException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,13 +25,13 @@ public class CreateProductCategoryPostController {
         this.createProduct = createProduct;
     }
     @PostMapping(value = "create/product-category")
-    public ResponseEntity<ProductCategory> create(@Valid @RequestBody Request request, BindingResult errorResult){
+    public ResponseEntity<ProductCategoryResponseDto> create(@Valid @RequestBody Request request, BindingResult errorResult){
         if (errorResult.hasErrors()){
             String errorMessage = GeneralException.extractErrorMessage(errorResult);
             throw new GeneralException(errorMessage, HttpStatus.BAD_REQUEST);
         }
 
-        ProductCategory result = createProduct.CreateProductCategory(new CreateCategoryRequest(
+        ProductCategoryResponseDto result = createProduct.CreateProductCategory(new CreateCategoryRequest(
                 request.name
         ));
         return ResponseEntity.status(HttpStatus.CREATED).body(result);

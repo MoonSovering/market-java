@@ -2,6 +2,7 @@ package main.agromarket.company.infrastructure.rest.controller;
 
 import main.agromarket.company.application.findById.FindCompanyByIdUseCase;
 import main.agromarket.company.domain.model.Company;
+import main.agromarket.company.domain.ports.response.CompanyResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +19,8 @@ public class CompanyGetByIdController {
     }
 
     @GetMapping(value = "company/{id}")
-    public ResponseEntity<Optional<Company>> findById(@PathVariable String id){
-        Optional<Company> company = findAll.findCompanyById(id);
-        return new ResponseEntity<>(company, HttpStatus.OK);
+    public ResponseEntity<Optional<CompanyResponseDto>> findById(@PathVariable String id){
+        Optional<CompanyResponseDto> company = findAll.findCompanyById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(company);
     }
 }

@@ -1,6 +1,7 @@
 package main.agromarket.selectItem.infrastructure.persistence.mapper;
 
 import main.agromarket.selectItem.domain.model.SelectItem;
+import main.agromarket.selectItem.domain.ports.out.response.ProductItemResponseDto;
 import main.agromarket.selectItem.infrastructure.persistence.entity.SelectItemEntity;
 import org.springframework.stereotype.Component;
 
@@ -16,9 +17,11 @@ public class SelectItemMapper {
         );
     }
 
-    public SelectItem entityToDomain(SelectItemEntity selectItemEntity) {
-        return new SelectItem(
+    public ProductItemResponseDto entityToDomain(SelectItemEntity selectItemEntity) {
+        return new ProductItemResponseDto(
+                selectItemEntity.getId(),
                 selectItemEntity.getAmountSelect(),
+                selectItemEntity.getDate(),
                 selectItemEntity.getIdCompany(),
                 selectItemEntity.getIdStatus(),
                 selectItemEntity.getIdProduct(),

@@ -9,7 +9,7 @@ import main.agromarket.shared.Enum.ShippingStatus;
 import java.time.LocalDate;
 import java.util.UUID;
 
-@Table(name = "select-products")
+@Table(name = "_select-products")
 @Entity
 @Getter
 @Setter

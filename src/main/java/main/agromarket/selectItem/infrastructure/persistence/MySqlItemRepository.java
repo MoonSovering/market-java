@@ -2,6 +2,7 @@ package main.agromarket.selectItem.infrastructure.persistence;
 
 import main.agromarket.selectItem.domain.model.SelectItem;
 import main.agromarket.selectItem.domain.ports.out.SelectItemRepositoryPort;
+import main.agromarket.selectItem.domain.ports.out.response.ProductItemResponseDto;
 import main.agromarket.selectItem.infrastructure.persistence.entity.SelectItemEntity;
 import main.agromarket.selectItem.infrastructure.persistence.mapper.SelectItemMapper;
 import main.agromarket.selectItem.infrastructure.persistence.repository.SelectItemJpaRepository;
@@ -23,14 +24,14 @@ public class MySqlItemRepository implements SelectItemRepositoryPort {
         this.mapper = mapper;
     }
     @Override
-    public SelectItem create(SelectItem item) {
+    public ProductItemResponseDto create(SelectItem item) {
         SelectItemEntity itemEntity = mapper.domainToEntity(item);
         SelectItemEntity savedEntity = repository.save(itemEntity);
         return mapper.entityToDomain(savedEntity);
     }
 
     @Override
-    public List<SelectItem> getAll() {
+    public List<ProductItemResponseDto> getAll() {
         List<SelectItemEntity> items = repository.findAll();
         if(items.isEmpty()){
             throw new GeneralException("No Select items found in the list.", HttpStatus.BAD_REQUEST);
@@ -40,7 +41,7 @@ public class MySqlItemRepository implements SelectItemRepositoryPort {
     }
 
     @Override
-    public Optional<SelectItem> getById(UUID id) {
+    public Optional<ProductItemResponseDto> getById(UUID id) {
         return repository.findById(id)
                 .map(mapper::entityToDomain);
     }

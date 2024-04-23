@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ContactAdditionalInfo {
+public class ContactAdditionalInfoEntity {
     private String contactType;
     private String contact;
 }

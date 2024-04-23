@@ -2,6 +2,7 @@ package main.agromarket.farmer.application.findById;
 
 import main.agromarket.farmer.domain.model.Farmer;
 import main.agromarket.farmer.domain.ports.out.UserRepositoryPort;
+import main.agromarket.farmer.domain.ports.out.response.FarmerResponseDto;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,7 +14,7 @@ public class FindFarmerByIdUseCase {
     public FindFarmerByIdUseCase(UserRepositoryPort userRepository) {
         this.userRepository = userRepository;
     }
-    public Optional<Farmer> findById(String id){
+    public Optional<FarmerResponseDto> findById(String id){
         return this.userRepository.getById(id);
     }
 }

@@ -2,10 +2,10 @@ package main.agromarket.farmer.infrastructure.persistence.mapper;
 
 
 import main.agromarket.farmer.domain.model.*;
-import main.agromarket.farmer.infrastructure.persistence.entity.ContactAdditionalInfo;
-import main.agromarket.farmer.infrastructure.persistence.entity.FarmTypeInfo;
+import main.agromarket.farmer.domain.ports.out.response.FarmerResponseDto;
+import main.agromarket.farmer.infrastructure.persistence.entity.ContactAdditionalInfoEntity;
+import main.agromarket.farmer.infrastructure.persistence.entity.FarmTypeInformationEntity;
 import main.agromarket.farmer.infrastructure.persistence.entity.FarmerEntity;
-import main.agromarket.shared.Enum.Status;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,18 +14,17 @@ import java.util.List;
 @Component
 public class FarmerMapper {
     public FarmerEntity domainToEntity(Farmer farmer) {
-        List<ContactAdditionalInfo> farmerContacts = farmer.getContact().stream()
-                .map(contactDetail -> new ContactAdditionalInfo(
+        List<ContactAdditionalInfoEntity> farmerContacts = farmer.getContact().stream()
+                .map(contactDetail -> new ContactAdditionalInfoEntity(
                         contactDetail.getTypeContact(),
                         contactDetail.getContact()
                 )).toList();
-        List<FarmTypeInfo> typeInfos = farmer.getType().stream()
-                .map(farmType -> new FarmTypeInfo(
+        List<FarmTypeInformationEntity> typeInfos = farmer.getType().stream()
+                .map(farmType -> new FarmTypeInformationEntity(
                         farmType.getTypeFarm(),
                         farmType.getFarm()
                 )).toList();
         return new FarmerEntity(
-                farmer.getUser().value(),
                 farmer.getName().value(),
                 farmer.getEmail().value(),
                 farmer.getPassword().value(),
@@ -36,27 +35,27 @@ public class FarmerMapper {
                 farmer.getStatus().value()
         );
     }
-    public Farmer entityToDomain(FarmerEntity entity) {
-        List<FarmerContact> companyContacts = entity.getContact().stream()
-                .map(contactAdditionalInfo -> new FarmerContact(
-                        contactAdditionalInfo.getContactType(),
-                        contactAdditionalInfo.getContact()
+    public FarmerResponseDto entityToDomain(FarmerEntity entity) {
+        List<FarmerResponseDto.ContactAdditionalInfo> companyContacts = entity.getContact().stream()
+                .map(contactAdditionalInfoEntity -> new FarmerResponseDto.ContactAdditionalInfo(
+                        contactAdditionalInfoEntity.getContactType(),
+                        contactAdditionalInfoEntity.getContact()
                 )).toList();
-        List<FarmType> farmTypes = entity.getType().stream()
-                .map(farmTypeInfo -> new FarmType(
+        List<FarmerResponseDto.FarmTypeInfo> farmTypes = entity.getType().stream()
+                .map(farmTypeInfo -> new FarmerResponseDto.FarmTypeInfo(
                         farmTypeInfo.getTypeFarm(),
                         farmTypeInfo.getFarm()
                 )).toList();
-        return new Farmer(
-                new FarmerId(entity.getFarmerId()),
-                new FarmerName(entity.getFarmerName()),
-                new FarmerEmail(entity.getEmail()),
-                new FarmerPassword(entity.getPassword()),
-                new FarmerLastName(entity.getLastName()),
-                new FarmerAddress(entity.getAddress()),
+        return new FarmerResponseDto(
+                entity.getFarmerId(),
+                entity.getFarmerName(),
+                entity.getEmail(),
+                entity.getPassword(),
+                entity.getLastName(),
+                entity.getAddress(),
                 companyContacts,
                 farmTypes,
-                new FarmerStatus(Status.valueOf(entity.getStatus()))
+                entity.getStatus()
         );
     }
 }

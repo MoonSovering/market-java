@@ -2,6 +2,7 @@ package main.agromarket.farmer.application.findAll;
 
 import main.agromarket.farmer.domain.model.Farmer;
 import main.agromarket.farmer.domain.ports.out.UserRepositoryPort;
+import main.agromarket.farmer.domain.ports.out.response.FarmerResponseDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class FindAllFarmerUseCase {
         this.userRepository = userRepository;
     }
 
-    public List<Farmer> findAll(){
+    public List<FarmerResponseDto> findAll(){
         return this.userRepository.getAll();
     }
 }

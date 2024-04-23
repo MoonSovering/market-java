@@ -1,6 +1,7 @@
 package main.agromarket.company.infrastructure.persistence.mapper;
 
 import main.agromarket.company.domain.model.*;
+import main.agromarket.company.domain.ports.response.CompanyResponseDto;
 import main.agromarket.company.infrastructure.persistence.entity.CompanyEntity;
 import main.agromarket.company.infrastructure.persistence.entity.ContactAdditionalInfo;
 import org.springframework.stereotype.Component;
@@ -17,7 +18,6 @@ public class CompanyMapper {
                         contactDetail.getContact()
                 )).toList();
         return new CompanyEntity(
-                company.getCompanyId().value(),
                 company.getName().value(),
                 companyContacts,
                 company.getAddress().value(),
@@ -27,20 +27,20 @@ public class CompanyMapper {
         );
     }
 
-    public Company entityToDomain(CompanyEntity company){
-        List<CompanyContact> companyContacts = company.getContact().stream()
-                .map(contactAdditionalInfo -> new CompanyContact(
+    public CompanyResponseDto entityToDomain(CompanyEntity company){
+        List<CompanyResponseDto.ContactAdditionalInfo> companyContacts = company.getContact().stream()
+                .map(contactAdditionalInfo -> new CompanyResponseDto.ContactAdditionalInfo(
                         contactAdditionalInfo.getContactType(),
                         contactAdditionalInfo.getContact()
                 )).toList();
-        return new Company(
-                new CompanyId(company.getCompanyId()),
-                new CompanyName(company.getName()),
+        return new CompanyResponseDto(
+                company.getCompanyId(),
+                company.getName(),
                 companyContacts,
-                new CompanyAddress(company.getAddress()),
-                new CompanyEmail(company.getEmail()),
-                new CompanyPassword(company.getPassword()),
-                new CompanyStatus(company.getStatus())
+                company.getAddress(),
+                company.getEmail(),
+                company.getPassword(),
+                company.getStatus()
         );
     }
 }

@@ -1,6 +1,7 @@
 package main.agromarket.Waste.infrastructure.persitence.mapper;
 
 import main.agromarket.Waste.domain.model.Waste;
+import main.agromarket.Waste.domain.ports.out.response.WasteResponseDto;
 import main.agromarket.Waste.infrastructure.persitence.entity.WasteEntity;
 import org.springframework.stereotype.Component;
 
@@ -15,11 +16,13 @@ public class WasteMapper {
         );
     }
 
-    public Waste entityToDomain(WasteEntity wasteEntity) {
-        return new Waste(
+    public WasteResponseDto entityToDomain(WasteEntity wasteEntity) {
+        return new WasteResponseDto(
+                wasteEntity.getWasteId(),
                 wasteEntity.getIdFarmer(),
                 wasteEntity.getIdStatus(),
                 wasteEntity.getIdProduct(),
+                wasteEntity.getPublishedDate(),
                 wasteEntity.getShippingStatus()
         );
     }

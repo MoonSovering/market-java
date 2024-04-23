@@ -3,6 +3,7 @@ package main.agromarket.Waste.infrastructure.persitence;
 import lombok.RequiredArgsConstructor;
 import main.agromarket.Waste.domain.model.Waste;
 import main.agromarket.Waste.domain.ports.out.WasteRepositoryPort;
+import main.agromarket.Waste.domain.ports.out.response.WasteResponseDto;
 import main.agromarket.Waste.infrastructure.persitence.entity.WasteEntity;
 import main.agromarket.Waste.infrastructure.persitence.mapper.WasteMapper;
 import main.agromarket.Waste.infrastructure.persitence.repository.JpaWasteRepository;
@@ -25,14 +26,14 @@ public class MySqlWasteRepository implements WasteRepositoryPort {
     }
 
     @Override
-    public Waste save(Waste waste) {
+    public WasteResponseDto save(Waste waste) {
         WasteEntity wasteEntity = mapper.domainToEntity(waste);
         WasteEntity savedEntity = repository.save(wasteEntity);
         return mapper.entityToDomain(savedEntity);
     }
 
     @Override
-    public List<Waste> getAll() {
+    public List<WasteResponseDto> getAll() {
         List<WasteEntity> wastes = repository.findAll();
         if(wastes.isEmpty()){
             throw new GeneralException("Waste's cannot be found.", HttpStatus.BAD_REQUEST);
@@ -42,7 +43,7 @@ public class MySqlWasteRepository implements WasteRepositoryPort {
     }
 
     @Override
-    public Optional<Waste> getById(UUID id) {
+    public Optional<WasteResponseDto> getById(UUID id) {
         return repository.findById(id)
                 .map(mapper::entityToDomain);
     }

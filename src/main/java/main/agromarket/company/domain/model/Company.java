@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Company {
-    private CompanyId companyId;
     private CompanyName name;
     private List<CompanyContact> contact;
     private CompanyAddress address;

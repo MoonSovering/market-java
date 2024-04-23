@@ -2,6 +2,7 @@ package main.agromarket.productCategory.application.findAll;
 
 import main.agromarket.productCategory.domain.model.ProductCategory;
 import main.agromarket.productCategory.domain.ports.out.ProductCategoryRepositoryPort;
+import main.agromarket.productCategory.domain.ports.out.response.ProductCategoryResponseDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class FindAllCategoryUseCase {
         this.repository = repository;
     }
 
-    public List<ProductCategory> getAll(){
+    public List<ProductCategoryResponseDto> getAll(){
         return repository.getAll();
     }
 }

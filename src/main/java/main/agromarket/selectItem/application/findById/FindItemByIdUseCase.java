@@ -2,6 +2,7 @@ package main.agromarket.selectItem.application.findById;
 
 import main.agromarket.selectItem.domain.model.SelectItem;
 import main.agromarket.selectItem.domain.ports.out.SelectItemRepositoryPort;
+import main.agromarket.selectItem.domain.ports.out.response.ProductItemResponseDto;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -15,7 +16,7 @@ public class FindItemByIdUseCase {
         this.repository = repository;
     }
 
-    public Optional<SelectItem> findById(UUID id){
+    public Optional<ProductItemResponseDto> findById(UUID id){
         return repository.getById(id);
     }
 }
