@@ -7,18 +7,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class WasteMapper {
     public WasteEntity domainToEntity(Waste waste) {
-        WasteEntity wasteEntity = new WasteEntity();
-        wasteEntity.setIdFarmer(waste.getIdFarmer());
-        wasteEntity.setIdStatus(waste.getIdStatus());
-        wasteEntity.setIdProduct(waste.getIdProduct());
-        return wasteEntity;
+        return new WasteEntity(
+                waste.getIdFarmer(),
+                waste.getIdStatus(),
+                waste.getIdProduct(),
+                waste.getShippingStatus()
+        );
     }
 
     public Waste entityToDomain(WasteEntity wasteEntity) {
-        Waste waste = new Waste();
-        waste.setIdFarmer(wasteEntity.getIdFarmer());
-        waste.setIdStatus(wasteEntity.getIdStatus());
-        waste.setIdProduct(wasteEntity.getIdProduct());
-        return waste;
+        return new Waste(
+                wasteEntity.getIdFarmer(),
+                wasteEntity.getIdStatus(),
+                wasteEntity.getIdProduct(),
+                wasteEntity.getShippingStatus()
+        );
     }
 }

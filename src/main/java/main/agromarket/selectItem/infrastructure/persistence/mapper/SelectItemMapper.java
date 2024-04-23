@@ -11,7 +11,8 @@ public class SelectItemMapper {
                 selectItem.getAmountSelect(),
                 selectItem.getIdCompany(),
                 selectItem.getIdStatus(),
-                selectItem.getIdProduct()
+                selectItem.getIdProduct(),
+                selectItem.getShippingStatus()
         );
     }
 
@@ -20,7 +21,8 @@ public class SelectItemMapper {
                 selectItemEntity.getAmountSelect(),
                 selectItemEntity.getIdCompany(),
                 selectItemEntity.getIdStatus(),
-                selectItemEntity.getIdProduct()
+                selectItemEntity.getIdProduct(),
+                selectItemEntity.getShippingStatus()
         );
     }
 }

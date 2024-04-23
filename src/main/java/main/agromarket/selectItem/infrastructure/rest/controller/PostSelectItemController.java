@@ -7,6 +7,7 @@ import lombok.Setter;
 import main.agromarket.selectItem.application.create.CreateItemRequest;
 import main.agromarket.selectItem.application.create.CreateItemUseCase;
 import main.agromarket.selectItem.domain.model.SelectItem;
+import main.agromarket.shared.Enum.ShippingStatus;
 import main.agromarket.shared.exception.GeneralException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,8 @@ public class PostSelectItemController {
                 request.amountSelect,
                 request.idCompany,
                 request.idStatus,
-                request.idProduct
+                request.idProduct,
+                ShippingStatus.ONWAY
         ));
         return ResponseEntity.status(HttpStatus.CREATED).body(body);
     }

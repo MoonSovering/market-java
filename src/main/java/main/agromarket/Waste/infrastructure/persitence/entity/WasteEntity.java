@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import main.agromarket.shared.Enum.ShippingStatus;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -26,4 +27,13 @@ public class WasteEntity {
     private String idProduct;
     @Column
     LocalDate publishedDate = LocalDate.now();
+    @Enumerated(EnumType.STRING)
+    private ShippingStatus shippingStatus;
+
+    public WasteEntity(String idFarmer, String idStatus, String idProduct, ShippingStatus shippingStatus) {
+        this.idFarmer = idFarmer;
+        this.idStatus = idStatus;
+        this.idProduct = idProduct;
+        this.shippingStatus = shippingStatus;
+    }
 }

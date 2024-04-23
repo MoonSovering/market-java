@@ -7,6 +7,7 @@ import main.agromarket.Waste.application.create.CreateWasteUseCase;
 import main.agromarket.Waste.domain.model.Waste;
 import main.agromarket.Waste.infrastructure.persitence.entity.WasteEntity;
 import main.agromarket.farmer.application.create.CreateFarmerUseCase;
+import main.agromarket.shared.Enum.ShippingStatus;
 import main.agromarket.shared.exception.GeneralException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,8 @@ public class WastePostController {
         Waste result = create.createWaste(new CreateWasteRequest(
                 request.idFarmer,
                 request.idStatus,
-                request.idProduct
+                request.idProduct,
+                ShippingStatus.ONWAY
         ));
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }

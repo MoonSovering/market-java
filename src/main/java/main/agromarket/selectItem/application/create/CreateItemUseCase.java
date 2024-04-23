@@ -17,7 +17,8 @@ public class CreateItemUseCase {
                 item.getAmountSelect(),
                 item.getIdCompany(),
                 item.getIdStatus(),
-                item.getIdProduct()
+                item.getIdProduct(),
+                item.getShippingStatus()
         ));
     }
 }
