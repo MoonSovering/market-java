@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import main.agromarket.productCategory.infrastructure.persistence.entity.ProductCategoryEntity;
 
 import java.util.UUID;
 
@@ -21,12 +22,12 @@ public class ProductEntity {
     private String name;
     @Column
     private int stock;
-    @Column
-    private String idCategory;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private ProductCategoryEntity category;
 
-    public ProductEntity(String name, int stock, String idCategory) {
+    public ProductEntity(String name, int stock) {
         this.name = name;
         this.stock = stock;
-        this.idCategory = idCategory;
     }
 }

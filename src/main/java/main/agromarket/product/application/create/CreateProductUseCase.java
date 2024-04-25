@@ -18,7 +18,7 @@ public class CreateProductUseCase {
         Product product = new Product(
                 request.getName(),
                 request.getStock(),
-                request.getIdCategory()
+                request.getCategory_id()
         );
         return this.repository.save(product);
     }

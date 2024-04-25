@@ -10,17 +10,17 @@ public class ProductMapper {
     public ProductEntity domainToEntity(Product product) {
         return new ProductEntity(
                 product.getName(),
-                product.getStock(),
-                product.getIdCategory()
+                product.getStock()
         );
     }
 
     public ProductResponseDto entityToDomain(ProductEntity productEntity) {
+        String category = productEntity.getCategory() != null ? productEntity.getCategory().getName() : null;
         return new ProductResponseDto(
                 productEntity.getId(),
                 productEntity.getName(),
                 productEntity.getStock(),
-                productEntity.getIdCategory()
+                category
         );
     }
 }

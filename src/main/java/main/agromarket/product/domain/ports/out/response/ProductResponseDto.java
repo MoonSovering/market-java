@@ -1,9 +1,5 @@
 package main.agromarket.product.domain.ports.out.response;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,5 +13,5 @@ public class ProductResponseDto {
     private UUID id;
     private String name;
     private int stock;
-    private String idCategory;
+    private String category;
 }

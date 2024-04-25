@@ -33,7 +33,7 @@ public class ProductPostController {
         ProductResponseDto result = create.createProduct(new CreateProductRequest(
                 request.name,
                 request.stock,
-                request.idCategory
+                request.category_id
         ));
 
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
@@ -45,6 +45,6 @@ public class ProductPostController {
     private static final class Request {
         private String name;
         private int stock;
-        private String idCategory;
+        private String category_id;
     }
 }
