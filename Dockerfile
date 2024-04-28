@@ -5,6 +5,9 @@ WORKDIR /app
 
 COPY . /app
 
+
+
+RUN chmod +x ./gradlew
 RUN ./gradlew build
 
 FROM openjdk:17-ea-14-jdk-alpine3.13
