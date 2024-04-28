@@ -23,8 +23,8 @@ public class ProductEntity {
     private String name;
     @Column
     private int stock;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @ManyToOne()
+    @JoinColumn(name = "category_id")
     private ProductCategoryEntity category;
     @OneToOne(mappedBy = "product")
     private WasteEntity waste;

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import main.agromarket.product.infrastructure.persistence.entity.ProductEntity;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -18,8 +19,8 @@ public class ProductCategoryEntity {
     private UUID id;
     @Column
     private String name;
-    @OneToOne(mappedBy = "category")
-    private ProductEntity product;
+    @OneToMany(mappedBy = "category")
+    private List<ProductEntity> product;
 
     public ProductCategoryEntity(String name) {
         this.name = name;
