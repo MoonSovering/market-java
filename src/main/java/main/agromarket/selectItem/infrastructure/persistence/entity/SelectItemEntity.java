@@ -25,16 +25,13 @@ public class SelectItemEntity {
     @Column
     private String idCompany;
     @Column
-    private String idStatus;
-    @Column
     private String idProduct;
     @Enumerated(EnumType.STRING)
     private ShippingStatus shippingStatus;
 
-    public SelectItemEntity(int amountSelect, String idCompany, String idStatus, String idProduct, ShippingStatus shippingStatus) {
+    public SelectItemEntity(int amountSelect, String idCompany, String idProduct, ShippingStatus shippingStatus) {
         this.amountSelect = amountSelect;
         this.idCompany = idCompany;
-        this.idStatus = idStatus;
         this.idProduct = idProduct;
         this.shippingStatus = shippingStatus;
     }

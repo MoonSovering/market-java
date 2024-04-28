@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 public class FarmerGetByIdController {
@@ -20,7 +21,7 @@ public class FarmerGetByIdController {
     }
 
     @GetMapping(value = "farmer/get/{id}")
-    public ResponseEntity<Optional<FarmerResponseDto>> findById(@PathVariable String id){
+    public ResponseEntity<Optional<FarmerResponseDto>> findById(@PathVariable UUID id){
         Optional<FarmerResponseDto> farmer = find.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(farmer);
     }

@@ -11,7 +11,6 @@ public class SelectItemMapper {
         return new SelectItemEntity(
                 selectItem.getAmountSelect(),
                 selectItem.getIdCompany(),
-                selectItem.getIdStatus(),
                 selectItem.getIdProduct(),
                 selectItem.getShippingStatus()
         );
@@ -23,7 +22,6 @@ public class SelectItemMapper {
                 selectItemEntity.getAmountSelect(),
                 selectItemEntity.getDate(),
                 selectItemEntity.getIdCompany(),
-                selectItemEntity.getIdStatus(),
                 selectItemEntity.getIdProduct(),
                 selectItemEntity.getShippingStatus()
         );

@@ -17,7 +17,6 @@ public class CreateItemUseCase {
         return repository.create(new SelectItem(
                 item.getAmountSelect(),
                 item.getIdCompany(),
-                item.getIdStatus(),
                 item.getIdProduct(),
                 item.getShippingStatus()
         ));

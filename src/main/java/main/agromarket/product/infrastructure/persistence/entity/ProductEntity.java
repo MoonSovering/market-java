@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import main.agromarket.Waste.infrastructure.persitence.entity.WasteEntity;
 import main.agromarket.productCategory.infrastructure.persistence.entity.ProductCategoryEntity;
 
 import java.util.UUID;
@@ -25,6 +26,8 @@ public class ProductEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private ProductCategoryEntity category;
+    @OneToOne(mappedBy = "product")
+    private WasteEntity waste;
 
     public ProductEntity(String name, int stock) {
         this.name = name;

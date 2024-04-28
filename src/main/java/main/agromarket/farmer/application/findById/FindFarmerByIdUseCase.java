@@ -6,6 +6,7 @@ import main.agromarket.farmer.domain.ports.out.response.FarmerResponseDto;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class FindFarmerByIdUseCase {
@@ -14,7 +15,7 @@ public class FindFarmerByIdUseCase {
     public FindFarmerByIdUseCase(UserRepositoryPort userRepository) {
         this.userRepository = userRepository;
     }
-    public Optional<FarmerResponseDto> findById(String id){
+    public Optional<FarmerResponseDto> findById(UUID id){
         return this.userRepository.getById(id);
     }
 }

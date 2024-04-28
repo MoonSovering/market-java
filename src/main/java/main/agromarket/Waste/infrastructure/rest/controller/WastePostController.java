@@ -33,7 +33,6 @@ public class WastePostController {
         }
         WasteResponseDto result = create.createWaste(new CreateWasteRequest(
                 request.idFarmer,
-                request.idStatus,
                 request.idProduct,
                 ShippingStatus.ONWAY
         ));
@@ -44,7 +43,6 @@ public class WastePostController {
     @Setter
     final static class Request {
         private String idFarmer;
-        private String idStatus;
         private String idProduct;
     }
 }

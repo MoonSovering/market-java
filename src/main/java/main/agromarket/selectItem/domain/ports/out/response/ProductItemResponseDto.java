@@ -17,7 +17,6 @@ public class ProductItemResponseDto {
     private int amountSelect;
     private LocalDate date;
     private String idCompany;
-    private String idStatus;
     private String idProduct;
     private ShippingStatus shippingStatus;
 }

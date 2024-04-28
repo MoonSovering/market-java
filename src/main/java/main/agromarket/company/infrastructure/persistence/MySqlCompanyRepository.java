@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class MySqlCompanyRepository implements CompanyRepositoryPort {
@@ -31,7 +32,7 @@ public class MySqlCompanyRepository implements CompanyRepositoryPort {
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(UUID id) {
         Optional<CompanyEntity> company = this.companyRepository.findById(id);
         if(company.isEmpty()){
             throw new GeneralException("Company cannot be found.", HttpStatus.BAD_REQUEST);
@@ -40,7 +41,7 @@ public class MySqlCompanyRepository implements CompanyRepositoryPort {
     }
 
     @Override
-    public Optional<CompanyResponseDto> getById(String id) {
+    public Optional<CompanyResponseDto> getById(UUID id) {
         Optional<CompanyResponseDto> company = this.companyRepository.findById(id)
                 .map(mapper::entityToDomain);
         if(company.isEmpty()){

@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class MySqlUserRepository implements UserRepositoryPort {
@@ -32,7 +33,7 @@ public class MySqlUserRepository implements UserRepositoryPort {
     }
 
     @Override
-    public void deleted(String id) {
+    public void deleted(UUID id) {
         Optional<FarmerEntity> farmer = this.userRepository.findById(id);
         if (farmer.isEmpty()){
             throw new GeneralException("Farmer cannot be found.", HttpStatus.BAD_REQUEST);
@@ -41,7 +42,7 @@ public class MySqlUserRepository implements UserRepositoryPort {
     }
 
     @Override
-    public Optional<FarmerResponseDto> getById(String id) {
+    public Optional<FarmerResponseDto> getById(UUID id) {
 
         Optional<FarmerResponseDto> farmer = this.userRepository.findById(id)
                 .map(farmerMapper::entityToDomain);

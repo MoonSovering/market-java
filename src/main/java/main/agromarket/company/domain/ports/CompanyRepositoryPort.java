@@ -5,11 +5,12 @@ import main.agromarket.company.domain.ports.response.CompanyResponseDto;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface CompanyRepositoryPort {
 
     CompanyResponseDto save(Company company);
-    void delete(String id);
-    Optional<CompanyResponseDto> getById(String id);
+    void delete(UUID id);
+    Optional<CompanyResponseDto> getById(UUID id);
     List<CompanyResponseDto> getAll();
 }

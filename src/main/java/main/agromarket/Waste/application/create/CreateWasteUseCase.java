@@ -17,7 +17,6 @@ public class CreateWasteUseCase {
     public WasteResponseDto createWaste(CreateWasteRequest request){
         Waste waste = new Waste(
                 request.getIdFarmer(),
-                request.getIdStatus(),
                 request.getIdProduct(),
                 request.getShippingStatus()
         );

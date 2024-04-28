@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import main.agromarket.Waste.infrastructure.persitence.entity.WasteEntity;
 
 import java.util.List;
 import java.util.UUID;
@@ -33,6 +34,8 @@ public class FarmerEntity {
     private List<FarmTypeInformationEntity> type;
     @Column
     private String status;
+    @OneToMany(mappedBy = "farmer")
+    private List<WasteEntity> wastes;
 
     public FarmerEntity(String farmerName, String email, String password, String lastName, String address, List<ContactAdditionalInfoEntity> contact, List<FarmTypeInformationEntity> type, String status) {
         this.farmerName = farmerName;

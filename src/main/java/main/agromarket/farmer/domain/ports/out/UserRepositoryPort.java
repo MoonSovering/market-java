@@ -10,8 +10,8 @@ import java.util.UUID;
 
 public interface UserRepositoryPort {
     FarmerResponseDto save(Farmer farmer);
-    void deleted(String id);
-    Optional<FarmerResponseDto> getById(String id);
+    void deleted(UUID id);
+    Optional<FarmerResponseDto> getById(UUID id);
     List<FarmerResponseDto> getAll();
 
 }

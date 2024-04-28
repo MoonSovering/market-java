@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 public class CompanyDeleteController {
     private final DeleteCompanyUseCase delete;
@@ -17,7 +19,7 @@ public class CompanyDeleteController {
         this.delete = delete;
     }
     @DeleteMapping(value = "company/{id}")
-    public ResponseEntity<String> delete(@PathVariable String id){
+    public ResponseEntity<String> delete(@PathVariable UUID id){
         try {
             delete.deleteCompany(id);
             return new ResponseEntity<>(HttpStatus.OK);

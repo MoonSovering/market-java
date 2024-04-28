@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 public class FarmerDeleteController {
     private DeleteFarmerUseCase delete;
@@ -17,7 +19,7 @@ public class FarmerDeleteController {
     }
 
     @DeleteMapping(value = "farmer/delete/{id}")
-    public ResponseEntity<String> delete(@PathVariable String id){
+    public ResponseEntity<String> delete(@PathVariable UUID id){
         try {
             delete.deleteFarmer(id);
             return new ResponseEntity<>(HttpStatus.OK);

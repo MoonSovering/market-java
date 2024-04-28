@@ -34,7 +34,6 @@ public class PostSelectItemController {
         ProductItemResponseDto body = create.create(new CreateItemRequest(
                 request.amountSelect,
                 request.idCompany,
-                request.idStatus,
                 request.idProduct,
                 ShippingStatus.ONWAY
         ));
@@ -47,7 +46,6 @@ public class PostSelectItemController {
     private static class Request {
         private int amountSelect;
         private String idCompany;
-        private String idStatus;
         private String idProduct;
     }
 }
