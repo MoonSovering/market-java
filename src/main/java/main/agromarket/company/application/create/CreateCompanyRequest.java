@@ -7,7 +7,6 @@ import java.util.List;
 
 @AllArgsConstructor
 public class CreateCompanyRequest {
-    private String companyId;
     private String name;
     private List<ContactInfo> contact;
     private String address;
@@ -25,10 +24,6 @@ public class CreateCompanyRequest {
         public String contact() {
             return contact;
         }
-    }
-
-    public String companyId() {
-        return companyId;
     }
 
     public String name() {

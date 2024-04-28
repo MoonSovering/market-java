@@ -2,6 +2,7 @@ package main.agromarket.farmer.application.create;
 
 import main.agromarket.farmer.domain.model.*;
 import main.agromarket.farmer.domain.ports.out.UserRepositoryPort;
+import main.agromarket.farmer.domain.ports.out.response.FarmerResponseDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public class CreateFarmerUseCase {
     public CreateFarmerUseCase(UserRepositoryPort userRepository) {
         this.userRepository = userRepository;
     }
-    public void createFarmer(CreateFarmerRequest request){
+    public FarmerResponseDto createFarmer(CreateFarmerRequest request){
         List<FarmerContact> companyContacts = request.contact().stream()
                 .map(contactDetail -> new FarmerContact(
                         contactDetail.contactType(),
@@ -24,7 +25,6 @@ public class CreateFarmerUseCase {
                         farmType.farm()
                 ) ).toList();
         Farmer farmer = new Farmer(
-                new FarmerId(request.farmerId()),
                 new FarmerName(request.farmerName()),
                 new FarmerEmail(request.email()),
                 new FarmerPassword(request.password()),
@@ -34,6 +34,6 @@ public class CreateFarmerUseCase {
                 farmTypes,
                 new FarmerStatus(request.status())
         );
-        userRepository.save(farmer);
+        return userRepository.save(farmer);
     }
 }

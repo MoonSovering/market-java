@@ -13,7 +13,7 @@ public class DeleteFarmerUseCase {
         this.userRepository = userRepository;
     }
 
-    public void deleteFarmer(String id){
+    public void deleteFarmer(UUID id){
         this.userRepository.deleted(id);
     }
 }

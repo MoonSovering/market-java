@@ -3,6 +3,7 @@ package main.agromarket.Waste.infrastructure.rest.controller;
 import lombok.RequiredArgsConstructor;
 import main.agromarket.Waste.application.findAll.FindAllWasteUseCase;
 import main.agromarket.Waste.domain.model.Waste;
+import main.agromarket.Waste.domain.ports.out.response.WasteResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +17,8 @@ public class WasteGetController {
     private final FindAllWasteUseCase find;
 
     @GetMapping(value = "waste")
-    public ResponseEntity<List<Waste>> findAll(){
-        List<Waste> wastes = find.findAllWaste();
+    public ResponseEntity<List<WasteResponseDto>> findAll(){
+        List<WasteResponseDto> wastes = find.findAllWaste();
         return new ResponseEntity<>(wastes, HttpStatus.OK);
     }
 }

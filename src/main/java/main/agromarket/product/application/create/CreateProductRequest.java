@@ -10,5 +10,5 @@ import lombok.Setter;
 public class CreateProductRequest {
     private String name;
     private int stock;
-    private String idCategory;
+    private String category_id;
 }

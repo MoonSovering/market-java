@@ -11,7 +11,6 @@ import main.agromarket.shared.Enum.ShippingStatus;
 public class CreateItemRequest {
     private int amountSelect;
     private String idCompany;
-    private String idStatus;
     private String idProduct;
     private ShippingStatus shippingStatus;
 }

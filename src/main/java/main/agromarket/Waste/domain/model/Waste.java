@@ -10,7 +10,6 @@ import main.agromarket.shared.Enum.ShippingStatus;
 @Getter
 public class Waste {
     private String idFarmer;
-    private String idStatus;
     private String idProduct;
     private ShippingStatus shippingStatus;
 }

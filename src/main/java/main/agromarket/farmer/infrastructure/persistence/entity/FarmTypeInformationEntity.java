@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FarmTypeInfo {
+public class FarmTypeInformationEntity {
     private String typeFarm;
     private String farm;
 }

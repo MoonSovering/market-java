@@ -2,6 +2,7 @@ package main.agromarket.selectItem.application.findAll;
 
 import main.agromarket.selectItem.domain.model.SelectItem;
 import main.agromarket.selectItem.domain.ports.out.SelectItemRepositoryPort;
+import main.agromarket.selectItem.domain.ports.out.response.ProductItemResponseDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class FindAllItemUseCase {
         this.repository = repository;
     }
 
-    public List<SelectItem> getAll(){
+    public List<ProductItemResponseDto> getAll(){
         return repository.getAll();
     }
 }

@@ -3,6 +3,7 @@ package main.agromarket.product.application.create;
 import lombok.Getter;
 import main.agromarket.product.domain.model.Product;
 import main.agromarket.product.domain.ports.out.ProductRepositoryPort;
+import main.agromarket.product.domain.ports.out.response.ProductResponseDto;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,11 +14,11 @@ public class CreateProductUseCase {
         this.repository = repository;
     }
 
-    public Product createProduct(CreateProductRequest request){
+    public ProductResponseDto createProduct(CreateProductRequest request){
         Product product = new Product(
                 request.getName(),
                 request.getStock(),
-                request.getIdCategory()
+                request.getCategory_id()
         );
         return this.repository.save(product);
     }

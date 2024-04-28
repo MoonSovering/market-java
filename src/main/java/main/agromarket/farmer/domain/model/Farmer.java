@@ -12,7 +12,6 @@ import java.util.List;
 @Getter
 @Setter
 public final class Farmer {
-    private FarmerId user;
     private FarmerName name;
     private FarmerEmail email;
     private FarmerPassword password;

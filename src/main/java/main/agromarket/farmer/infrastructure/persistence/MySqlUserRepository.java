@@ -2,6 +2,7 @@ package main.agromarket.farmer.infrastructure.persistence;
 
 import main.agromarket.farmer.domain.model.Farmer;
 import main.agromarket.farmer.domain.ports.out.UserRepositoryPort;
+import main.agromarket.farmer.domain.ports.out.response.FarmerResponseDto;
 import main.agromarket.farmer.infrastructure.persistence.entity.FarmerEntity;
 import main.agromarket.farmer.infrastructure.persistence.mapper.FarmerMapper;
 import main.agromarket.farmer.infrastructure.persistence.repository.JpaUserRepository;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class MySqlUserRepository implements UserRepositoryPort {
@@ -24,13 +26,14 @@ public class MySqlUserRepository implements UserRepositoryPort {
     }
     @Override
     @Transactional
-    public void save(Farmer farmer) {
+    public FarmerResponseDto save(Farmer farmer) {
         FarmerEntity farmerEntity = farmerMapper.domainToEntity(farmer);
-        this.userRepository.save(farmerEntity);
+        FarmerEntity result = userRepository.save(farmerEntity);
+        return farmerMapper.entityToDomain(result);
     }
 
     @Override
-    public void deleted(String id) {
+    public void deleted(UUID id) {
         Optional<FarmerEntity> farmer = this.userRepository.findById(id);
         if (farmer.isEmpty()){
             throw new GeneralException("Farmer cannot be found.", HttpStatus.BAD_REQUEST);
@@ -39,9 +42,9 @@ public class MySqlUserRepository implements UserRepositoryPort {
     }
 
     @Override
-    public Optional<Farmer> getById(String id) {
+    public Optional<FarmerResponseDto> getById(UUID id) {
 
-        Optional<Farmer> farmer = this.userRepository.findById(id)
+        Optional<FarmerResponseDto> farmer = this.userRepository.findById(id)
                 .map(farmerMapper::entityToDomain);
         if(farmer.isEmpty()){
             throw new GeneralException("Farmer cannot be found.", HttpStatus.BAD_REQUEST);
@@ -50,7 +53,7 @@ public class MySqlUserRepository implements UserRepositoryPort {
     }
 
     @Override
-    public List<Farmer> getAll() {
+    public List<FarmerResponseDto> getAll() {
         List<FarmerEntity> farmers =  this.userRepository.findAll();
         if (farmers.isEmpty()){
            throw new GeneralException("No farmers found in the farmer list.", HttpStatus.BAD_REQUEST);

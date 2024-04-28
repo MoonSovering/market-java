@@ -7,6 +7,7 @@ import lombok.Setter;
 import main.agromarket.product.application.create.CreateProductRequest;
 import main.agromarket.product.application.create.CreateProductUseCase;
 import main.agromarket.product.domain.model.Product;
+import main.agromarket.product.domain.ports.out.response.ProductResponseDto;
 import main.agromarket.shared.exception.GeneralException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,15 +25,15 @@ public class ProductPostController {
     }
 
     @PostMapping(value = "create/product")
-    public ResponseEntity<Product> create(@Valid @RequestBody Request request, BindingResult errorResult){
+    public ResponseEntity<ProductResponseDto> create(@Valid @RequestBody Request request, BindingResult errorResult){
         if(errorResult.hasErrors()){
             String errorMessage = GeneralException.extractErrorMessage(errorResult);
             throw new GeneralException(errorMessage, HttpStatus.BAD_REQUEST);
         }
-        Product result = create.createProduct(new CreateProductRequest(
+        ProductResponseDto result = create.createProduct(new CreateProductRequest(
                 request.name,
                 request.stock,
-                request.idCategory
+                request.category_id
         ));
 
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
@@ -44,6 +45,6 @@ public class ProductPostController {
     private static final class Request {
         private String name;
         private int stock;
-        private String idCategory;
+        private String category_id;
     }
 }

@@ -6,8 +6,6 @@ import main.agromarket.shared.Enum.Status;
 import java.util.List;
 @AllArgsConstructor
 public class CreateFarmerRequest {
-
-    private String farmerId;
     private String farmerName;
     private String email;
     private String password;
@@ -44,9 +42,6 @@ public class CreateFarmerRequest {
 
     public String address() {
         return address;
-    }
-    public String farmerId() {
-        return farmerId;
     }
 
     public String farmerName() {

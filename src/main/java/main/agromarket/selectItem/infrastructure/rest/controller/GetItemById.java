@@ -2,6 +2,7 @@ package main.agromarket.selectItem.infrastructure.rest.controller;
 
 import main.agromarket.selectItem.application.findById.FindItemByIdUseCase;
 import main.agromarket.selectItem.domain.model.SelectItem;
+import main.agromarket.selectItem.domain.ports.out.response.ProductItemResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +21,8 @@ public class GetItemById {
     }
 
     @GetMapping(value = "select-item/get/{id}")
-    public ResponseEntity<Optional<SelectItem>> findById(@PathVariable UUID id){
-        Optional<SelectItem> result = find.findById(id);
+    public ResponseEntity<Optional<ProductItemResponseDto>> findById(@PathVariable UUID id){
+        Optional<ProductItemResponseDto> result = find.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 }

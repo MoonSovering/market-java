@@ -2,6 +2,7 @@ package main.agromarket.selectItem.infrastructure.rest.controller;
 
 import main.agromarket.selectItem.application.findAll.FindAllItemUseCase;
 import main.agromarket.selectItem.domain.model.SelectItem;
+import main.agromarket.selectItem.domain.ports.out.response.ProductItemResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ public class GetAllItemController {
     }
 
     @GetMapping(value = "select-item")
-    public ResponseEntity<List<SelectItem>> getAll(){
+    public ResponseEntity<List<ProductItemResponseDto>> getAll(){
         return ResponseEntity.status(HttpStatus.OK).body(findAll.getAll());
     }
 }

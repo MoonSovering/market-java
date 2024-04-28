@@ -2,6 +2,7 @@ package main.agromarket.company.application.findAll;
 
 import main.agromarket.company.domain.model.Company;
 import main.agromarket.company.domain.ports.CompanyRepositoryPort;
+import main.agromarket.company.domain.ports.response.CompanyResponseDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class FindAllCompanyUseCase {
         this.companyRepository = companyRepository;
     }
 
-    public List<Company> findAllCompany(){
+    public List<CompanyResponseDto> findAllCompany(){
         return companyRepository.getAll();
     }
 }

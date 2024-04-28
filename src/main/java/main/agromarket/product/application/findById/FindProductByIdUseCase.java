@@ -2,6 +2,7 @@ package main.agromarket.product.application.findById;
 
 import main.agromarket.product.domain.model.Product;
 import main.agromarket.product.domain.ports.out.ProductRepositoryPort;
+import main.agromarket.product.domain.ports.out.response.ProductResponseDto;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -15,7 +16,7 @@ public class FindProductByIdUseCase {
         this.repository = repository;
     }
 
-    public Optional<Product> findById(UUID id){
+    public Optional<ProductResponseDto> findById(UUID id){
         return repository.findById(id);
     }
 }

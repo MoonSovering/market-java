@@ -1,36 +1,31 @@
 package main.agromarket.farmer.infrastructure.rest.controller;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import main.agromarket.company.application.create.CreateCompanyRequest;
 import main.agromarket.farmer.application.create.CreateFarmerRequest;
 import main.agromarket.farmer.application.create.CreateFarmerUseCase;
+import main.agromarket.farmer.domain.ports.out.response.FarmerResponseDto;
 import main.agromarket.shared.Enum.Status;
 import main.agromarket.shared.exception.GeneralException;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-public final class FarmerPutController {
+public final class FarmerPostController {
     private CreateFarmerUseCase creator;
-    public FarmerPutController(CreateFarmerUseCase creator) {
+    public FarmerPostController(CreateFarmerUseCase creator) {
         this.creator = creator;
     }
-    @PutMapping(value = "/farmer/create/{id}")
-    public ResponseEntity<String> create(@PathVariable String id, @Valid @RequestBody Request request, BindingResult errorResult){
+    @PostMapping("farmer/create")
+    public ResponseEntity<FarmerResponseDto> create(@Valid @RequestBody Request request, BindingResult errorResult){
         if(errorResult.hasErrors()){
             String errorMessage = GeneralException.extractErrorMessage(errorResult);
             throw new GeneralException(errorMessage, HttpStatus.BAD_REQUEST);
@@ -45,9 +40,9 @@ public final class FarmerPutController {
                                 typeFarmInfo.typeFarm,
                                 typeFarmInfo.farm
                         )).toList();
-        creator.createFarmer(new CreateFarmerRequest(id, request.userName, request.email,
+        FarmerResponseDto result = creator.createFarmer(new CreateFarmerRequest(request.userName, request.email,
                 request.password, request.lastName, request.address, companyContacts, farmTypes, Status.FARMER));
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
     final static class Request {
         @NotBlank(message = "Username is required")

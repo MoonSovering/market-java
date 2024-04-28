@@ -5,6 +5,7 @@ import lombok.*;
 import main.agromarket.Waste.application.create.CreateWasteRequest;
 import main.agromarket.Waste.application.create.CreateWasteUseCase;
 import main.agromarket.Waste.domain.model.Waste;
+import main.agromarket.Waste.domain.ports.out.response.WasteResponseDto;
 import main.agromarket.Waste.infrastructure.persitence.entity.WasteEntity;
 import main.agromarket.farmer.application.create.CreateFarmerUseCase;
 import main.agromarket.shared.Enum.ShippingStatus;
@@ -25,14 +26,13 @@ public class WastePostController {
     }
 
     @PostMapping("waste/create")
-    public ResponseEntity<Waste> create(@Valid @RequestBody Request request, BindingResult errorResult){
+    public ResponseEntity<WasteResponseDto> create(@Valid @RequestBody Request request, BindingResult errorResult){
         if(errorResult.hasErrors()){
             String errorMessage = GeneralException.extractErrorMessage(errorResult);
             throw new GeneralException(errorMessage, HttpStatus.BAD_REQUEST);
         }
-        Waste result = create.createWaste(new CreateWasteRequest(
+        WasteResponseDto result = create.createWaste(new CreateWasteRequest(
                 request.idFarmer,
-                request.idStatus,
                 request.idProduct,
                 ShippingStatus.ONWAY
         ));
@@ -43,7 +43,6 @@ public class WastePostController {
     @Setter
     final static class Request {
         private String idFarmer;
-        private String idStatus;
         private String idProduct;
     }
 }

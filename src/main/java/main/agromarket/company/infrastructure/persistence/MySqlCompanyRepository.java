@@ -2,6 +2,7 @@ package main.agromarket.company.infrastructure.persistence;
 
 import main.agromarket.company.domain.model.Company;
 import main.agromarket.company.domain.ports.CompanyRepositoryPort;
+import main.agromarket.company.domain.ports.response.CompanyResponseDto;
 import main.agromarket.company.infrastructure.persistence.entity.CompanyEntity;
 import main.agromarket.company.infrastructure.persistence.mapper.CompanyMapper;
 import main.agromarket.company.infrastructure.persistence.repository.JpaCompanyRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class MySqlCompanyRepository implements CompanyRepositoryPort {
@@ -23,13 +25,14 @@ public class MySqlCompanyRepository implements CompanyRepositoryPort {
     }
 
     @Override
-    public void save(Company company) {
+    public CompanyResponseDto save(Company company) {
         CompanyEntity companyEntity = mapper.domainToEntity(company);
-        this.companyRepository.save(companyEntity);
+        CompanyEntity result = companyRepository.save(companyEntity);
+        return mapper.entityToDomain(result);
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(UUID id) {
         Optional<CompanyEntity> company = this.companyRepository.findById(id);
         if(company.isEmpty()){
             throw new GeneralException("Company cannot be found.", HttpStatus.BAD_REQUEST);
@@ -38,8 +41,8 @@ public class MySqlCompanyRepository implements CompanyRepositoryPort {
     }
 
     @Override
-    public Optional<Company> getById(String id) {
-        Optional<Company> company = this.companyRepository.findById(id)
+    public Optional<CompanyResponseDto> getById(UUID id) {
+        Optional<CompanyResponseDto> company = this.companyRepository.findById(id)
                 .map(mapper::entityToDomain);
         if(company.isEmpty()){
             throw new GeneralException("Company cannot be found.", HttpStatus.BAD_REQUEST);
@@ -48,7 +51,7 @@ public class MySqlCompanyRepository implements CompanyRepositoryPort {
     }
 
     @Override
-    public List<Company> getAll() {
+    public List<CompanyResponseDto> getAll() {
         List<CompanyEntity> companies = this.companyRepository.findAll();
         if(companies.isEmpty()){
             throw new GeneralException("No companies found in the company list.", HttpStatus.BAD_REQUEST);

@@ -2,6 +2,7 @@ package main.agromarket.product.infrastructure.rest.controller;
 
 import main.agromarket.product.application.findById.FindProductByIdUseCase;
 import main.agromarket.product.domain.model.Product;
+import main.agromarket.product.domain.ports.out.response.ProductResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,8 @@ public class GetProductById {
     }
 
     @GetMapping(value = "product/get/{id}")
-    public ResponseEntity<Optional<Product>> getById(@PathVariable UUID id){
-        Optional<Product> result  = find.findById(id);
+    public ResponseEntity<Optional<ProductResponseDto>> getById(@PathVariable UUID id){
+        Optional<ProductResponseDto> result  = find.findById(id);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(result);
     }
 }
