@@ -46,12 +46,15 @@ public class FarmerMapper {
                         farmTypeInfo.getTypeFarm(),
                         farmTypeInfo.getFarm()
                 )).toList();
-        List<FarmerResponseDto.WasteResponse> wastes = entity.getWastes().stream()
-                .map(waste -> new FarmerResponseDto.WasteResponse(
-                        waste.getPublishedDate(),
-                        waste.getShippingStatus().toString(),
-                        waste.getProduct().getName()
-                )).toList();
+        List<FarmerResponseDto.WasteResponse> wastes = null;
+        if (entity.getWastes() != null) {
+            wastes = entity.getWastes().stream()
+                    .map(waste -> new FarmerResponseDto.WasteResponse(
+                            waste.getPublishedDate(),
+                            waste.getShippingStatus().toString(),
+                            waste.getProduct().getName()
+                    )).toList();
+        }
         return new FarmerResponseDto(
                 entity.getFarmerId(),
                 entity.getFarmerName(),
