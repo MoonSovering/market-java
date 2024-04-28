@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY . /app
 
-RUN gradle clean build
+RUN ./gradlew build
 
 FROM openjdk:17-ea-14-jdk-alpine3.13
 
