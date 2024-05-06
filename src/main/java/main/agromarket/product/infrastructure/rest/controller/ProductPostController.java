@@ -32,6 +32,7 @@ public class ProductPostController {
         }
         ProductResponseDto result = create.createProduct(new CreateProductRequest(
                 request.name,
+                request.getPrice(),
                 request.stock,
                 request.category_id
         ));
@@ -44,6 +45,7 @@ public class ProductPostController {
     @AllArgsConstructor
     private static final class Request {
         private String name;
+        private float price;
         private int stock;
         private String category_id;
     }

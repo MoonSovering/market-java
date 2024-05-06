@@ -40,7 +40,6 @@ public class MySqlUserRepository implements UserRepositoryPort {
         }
         this.userRepository.deleteById(id);
     }
-
     @Override
     public Optional<FarmerResponseDto> getById(UUID id) {
 
@@ -51,7 +50,6 @@ public class MySqlUserRepository implements UserRepositoryPort {
         }
         return farmer;
     }
-
     @Override
     public List<FarmerResponseDto> getAll() {
         List<FarmerEntity> farmers =  this.userRepository.findAll();

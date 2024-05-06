@@ -22,6 +22,8 @@ public class ProductEntity {
     @Column
     private String name;
     @Column
+    private Float price;
+    @Column
     private int stock;
     @ManyToOne()
     @JoinColumn(name = "category_id")

@@ -52,7 +52,10 @@ public class FarmerMapper {
                     .map(waste -> new FarmerResponseDto.WasteResponse(
                             waste.getPublishedDate(),
                             waste.getShippingStatus().toString(),
-                            waste.getProduct().getName()
+                            waste.getProduct().getName(),
+                            waste.getProduct().getCategory().getName(),
+                            waste.getProduct().getPrice(),
+                            waste.getProduct().getStock()
                     )).toList();
         }
         return new FarmerResponseDto(
