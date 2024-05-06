@@ -17,6 +17,7 @@ public class WasteMapper {
     public WasteResponseDto entityToDomain(WasteEntity wasteEntity) {
         WasteResponseDto.Product product = new WasteResponseDto.Product(
                 wasteEntity.getProduct().getName(),
+                wasteEntity.getProduct().getPrice(),
                 wasteEntity.getProduct().getStock(),
                 wasteEntity.getProduct().getCategory().getName()
         );

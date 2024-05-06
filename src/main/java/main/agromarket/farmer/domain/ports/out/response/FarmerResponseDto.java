@@ -43,6 +43,9 @@ public class FarmerResponseDto {
     public static class WasteResponse {
         private LocalDate publishedDate;
         private String shippingStatus;
-        private String product;
+        private String name;
+        private String category;
+        private float price;
+        private Integer amount;
     }
 }

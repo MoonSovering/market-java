@@ -19,6 +19,7 @@ public class ProductMapper {
         return new ProductResponseDto(
                 productEntity.getId(),
                 productEntity.getName(),
+                productEntity.getPrice(),
                 productEntity.getStock(),
                 category
         );

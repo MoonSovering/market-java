@@ -9,6 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CreateProductRequest {
     private String name;
+    private Float price;
     private int stock;
     private String category_id;
 }

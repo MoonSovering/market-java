@@ -17,6 +17,7 @@ public class CreateProductUseCase {
     public ProductResponseDto createProduct(CreateProductRequest request){
         Product product = new Product(
                 request.getName(),
+                request.getPrice(),
                 request.getStock(),
                 request.getCategory_id()
         );

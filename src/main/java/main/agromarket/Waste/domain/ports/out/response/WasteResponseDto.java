@@ -25,6 +25,7 @@ public class WasteResponseDto {
     @AllArgsConstructor
     public static class Product {
         private String name;
+        private float price;
         private int stock;
         private String category;
     }

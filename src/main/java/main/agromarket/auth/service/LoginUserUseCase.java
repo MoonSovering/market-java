@@ -1,6 +1,7 @@
 package main.agromarket.auth.service;
 
 import main.agromarket.auth.dtos.ClientResponseDto;
+import main.agromarket.auth.dtos.FarmerResponseDto;
 import main.agromarket.auth.dtos.LoginUserDto;
 import main.agromarket.company.infrastructure.persistence.entity.CompanyEntity;
 import main.agromarket.company.infrastructure.persistence.repository.JpaCompanyRepository;
@@ -10,6 +11,8 @@ import main.agromarket.shared.exception.GeneralException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -22,7 +25,7 @@ public class LoginUserUseCase {
         this.companyRepository = companyRepository;
     }
 
-    public ClientResponseDto loginUser(LoginUserDto body) {
+    public Object loginUser(LoginUserDto body) {
         Optional<FarmerEntity> farmer = userRepository.findByEmail(body.getEmail());
         Optional<CompanyEntity> company = companyRepository.findByEmail(body.getEmail());
 
@@ -31,11 +34,21 @@ public class LoginUserUseCase {
             if (!f.getPassword().equals(body.getPassword())) {
                 throw new GeneralException("Email or password incorrect.", HttpStatus.BAD_REQUEST);
             }
-            return new ClientResponseDto(
+            List<FarmerResponseDto.WasteResponse> wasteProducts = f.getWastes().stream()
+                    .map(waste -> new FarmerResponseDto.WasteResponse(
+                            waste.getPublishedDate(),
+                            waste.getShippingStatus().toString(),
+                            waste.getProduct().getName(),
+                            waste.getProduct().getCategory().getName(),
+                            waste.getProduct().getPrice(),
+                            waste.getProduct().getStock()
+                    )).toList();
+            return new FarmerResponseDto(
                     f.getFarmerId().toString(),
                     f.getEmail(),
                     f.getFarmerName(),
-                    f.getStatus()
+                    f.getStatus(),
+                    wasteProducts
             );
         } else if (company.isPresent()) {
             CompanyEntity c = company.get();
