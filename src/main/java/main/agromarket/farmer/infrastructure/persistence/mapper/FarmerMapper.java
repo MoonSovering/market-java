@@ -49,14 +49,26 @@ public class FarmerMapper {
         List<FarmerResponseDto.WasteResponse> wastes = null;
         if (entity.getWastes() != null) {
             wastes = entity.getWastes().stream()
-                    .map(waste -> new FarmerResponseDto.WasteResponse(
-                            waste.getPublishedDate(),
-                            waste.getShippingStatus().toString(),
-                            waste.getProduct().getName(),
-                            waste.getProduct().getCategory().getName(),
-                            waste.getProduct().getPrice(),
-                            waste.getProduct().getStock()
-                    )).toList();
+                    .map(waste -> {
+                        String productName = null;
+                        String productCategory = null;
+                        Float productPrice = 0.0f;
+                        Integer productStock = null;
+                        if (waste.getProduct() != null) {
+                            productName = waste.getProduct().getName();
+                            productCategory = waste.getProduct().getCategory() != null ? waste.getProduct().getCategory().getName() : null;
+                            productPrice = waste.getProduct().getPrice();
+                            productStock = waste.getProduct().getStock();
+                        }
+                        return new FarmerResponseDto.WasteResponse(
+                                waste.getPublishedDate(),
+                                waste.getShippingStatus().toString(),
+                                productName,
+                                productCategory,
+                                productPrice,
+                                productStock
+                        );
+                    }).toList();
         }
         return new FarmerResponseDto(
                 entity.getFarmerId(),

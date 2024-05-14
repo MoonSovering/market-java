@@ -15,7 +15,6 @@ import java.util.UUID;
 public class ProductCategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id")
     private UUID id;
     @Column
     private String name;

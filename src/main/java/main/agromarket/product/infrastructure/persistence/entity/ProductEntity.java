@@ -26,7 +26,7 @@ public class ProductEntity {
     @Column
     private int stock;
     @ManyToOne()
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", unique = false)
     private ProductCategoryEntity category;
     @OneToOne(mappedBy = "product")
     private WasteEntity waste;
