@@ -31,8 +31,9 @@ public class ProductEntity {
     @OneToOne(mappedBy = "product")
     private WasteEntity waste;
 
-    public ProductEntity(String name, int stock) {
+    public ProductEntity(String name, float price ,int stock) {
         this.name = name;
+        this.price = price;
         this.stock = stock;
     }
 }

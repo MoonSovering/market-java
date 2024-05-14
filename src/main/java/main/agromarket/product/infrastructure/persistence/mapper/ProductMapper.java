@@ -10,16 +10,18 @@ public class ProductMapper {
     public ProductEntity domainToEntity(Product product) {
         return new ProductEntity(
                 product.getName(),
+                product.getPrice(),
                 product.getStock()
         );
     }
 
     public ProductResponseDto entityToDomain(ProductEntity productEntity) {
         String category = productEntity.getCategory() != null ? productEntity.getCategory().getName() : null;
+        Float price = productEntity.getPrice() != null ? productEntity.getPrice() : 0.0f;
         return new ProductResponseDto(
                 productEntity.getId(),
                 productEntity.getName(),
-                productEntity.getPrice(),
+                price,
                 productEntity.getStock(),
                 category
         );
